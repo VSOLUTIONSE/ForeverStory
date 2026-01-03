@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Wedding } from '../../types';
 import { Save, Sparkles, Image as ImageIcon, Plus, Trash2, Camera, Info } from 'lucide-react';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 
 const StoryEditor: React.FC<{ wedding: Wedding | null, setWedding: any }> = ({ wedding, setWedding }) => {
   const [activeTab, setActiveTab] = useState('hero');
@@ -20,13 +20,13 @@ const StoryEditor: React.FC<{ wedding: Wedding | null, setWedding: any }> = ({ w
     if (!wedding) return;
     setIsGenerating(true);
     try {
-      const genAI = new GoogleGenerativeAI(process.env.API_KEY || '');
-      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-      const result = await model.generateContent(
-        `Write a romantic, elegant "How We Met" story for a Nigerian couple named ${wedding.partner1_name} and ${wedding.partner2_name}. Keep it under 100 words and include a subtle mention of Lagos or another Nigerian setting.`
-      );
-
-      const newContent = result.response.text();
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const response = await ai.models.generateContent({
+        model: 'gemini-3-flash-preview',
+        contents: `Write a romantic, elegant "How We Met" story for a Nigerian couple named ${wedding.partner1_name} and ${wedding.partner2_name}. Keep it under 100 words and include a subtle mention of Lagos or another Nigerian setting.`,
+      });
+      
+      const newContent = response.text || '';
       setWedding((prev: any) => ({
         ...prev,
         how_we_met: { ...prev.how_we_met, content: newContent }
@@ -183,8 +183,6 @@ const StoryEditor: React.FC<{ wedding: Wedding | null, setWedding: any }> = ({ w
               </div>
             </div>
           )}
-
-          {/* Other tabs omitted for brevity in MVP but follow same pattern */}
         </div>
       </div>
     </div>

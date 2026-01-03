@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ForeverStory</title>
+    <title>ForeverStory | Celebrate Your Love</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,8 @@
       body {
         font-family: 'Inter', sans-serif;
         scroll-behavior: smooth;
+        margin: 0;
+        padding: 0;
       }
       .font-serif {
         font-family: 'Playfair Display', serif;
@@ -46,23 +48,39 @@
       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
       }
+      
+      #root {
+        min-height: 100vh;
+      }
+
+      /* Animation for scroll ticker */
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .animate-scroll {
+        display: flex;
+        width: 200%;
+        animation: scroll 30s linear infinite;
+      }
     </style>
     <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@18.3.1",
-    "react-dom": "https://esm.sh/react-dom@18.3.1",
-    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
     "react-router-dom": "https://esm.sh/react-router-dom@6.22.3",
     "framer-motion": "https://esm.sh/framer-motion@11.0.24",
     "lucide-react": "https://esm.sh/lucide-react@0.363.0",
     "recharts": "https://esm.sh/recharts@2.12.3",
-    "@google/generative-ai": "https://esm.sh/@google/generative-ai@0.21.0",
-    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
-    "react/": "https://esm.sh/react@18.3.1/"
+    "@google/genai": "https://esm.sh/@google/genai@0.2.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
+    <script type="module" src="index.tsx"></script>
   </head>
   <body class="bg-[#FAF9F6] text-slate-900">
     <div id="root"></div>
