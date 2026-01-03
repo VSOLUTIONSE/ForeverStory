@@ -1,0 +1,7 @@
+{
+  "name": "ForeverStory - Nigerian Wedding Platform",
+  "description": "A high-end wedding celebration platform for Nigerian couples to share their journey, receive wishes, and track gifts with elegant aesthetics and real-time updates.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
